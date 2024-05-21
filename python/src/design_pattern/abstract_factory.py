@@ -60,6 +60,7 @@ class AbstractProductA(ABC):
 
 # Concrete Factories produce a family of concrete products that belong to a single variant.
 
+
 class ConcreteProductA1(AbstractProductA):
     def perform_function_a(self) -> str:
         return "The outcome of product A1."
@@ -96,6 +97,7 @@ class AbstractProductB(ABC):
 
 
 # Concrete Factories produce concrete products, that belong to a single variant.
+
 
 class ConcreteProductB1(AbstractProductB):
     def execute_function_b(self) -> str:

@@ -6,9 +6,10 @@ import unittest
 
 class Singleton:
     """Singleton. This code demonstrates how to make a class into a singleton."""
+
     _instance = None  # Class-level attribute to store the single instance
 
-    def __new__(cls: 'Singleton') -> 'Singleton':
+    def __new__(cls: "Singleton") -> "Singleton":
         if cls._instance is None:
             cls._instance = super(Singleton, cls).__new__(cls)
         return cls._instance
@@ -31,6 +32,7 @@ def singleton(cls):
 @singleton
 class SingletonDecorator:
     """This class is now a singleton as done by the decorator"""
+
     the_answer = 42
 
 
@@ -51,5 +53,5 @@ class UnitTests(unittest.TestCase):
         self.assertEqual(s1.the_answer, s2.the_answer)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -88,7 +88,7 @@ class Game:
                 print("Player 2 wins!")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     ## Example application
     ## PLayer 1 can select his strategy
     player1 = Game(Paper())
