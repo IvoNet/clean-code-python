@@ -1,15 +1,7 @@
 from decimal import Decimal
-from enum import Enum, auto
 from typing import Protocol
 
 
-class DiscountType(Enum):
-    NONE = auto()
-    PERCENTAGE = auto()
-    ABSOLUTE = auto()
-
-
-# create a Prototype of the Discount class with an apply method
 class Discount(Protocol):
     def apply(self, amount: Decimal) -> Decimal:
         pass
