@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 #  -*- coding: utf-8 -*-
+
 from dont_use_else.discount_service import (
     DiscountService,
     PercentageDiscount,
@@ -8,13 +9,13 @@ from dont_use_else.discount_service import (
 )
 
 
-def test_persentage_discount():
+def test_percentage_discount():
     discount_service = DiscountService()
     discount = discount_service.apply_discount(100, PercentageDiscount(0.1))
     assert discount == 90
 
 
-def test_wrong_persentage_discount():
+def test_wrong_percentage_discount():
     discount_service = DiscountService()
     try:
         discount_service.apply_discount(100, PercentageDiscount(2))
@@ -48,5 +49,6 @@ def test_no_discount():
 
 def test_none_discount():
     discount_service = DiscountService()
+    # noinspection PyTypeChecker
     discount = discount_service.apply_discount(100, None)
     assert discount == 100
