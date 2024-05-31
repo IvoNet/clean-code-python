@@ -4,11 +4,6 @@ version = "0.1.0"
 description = "A python reference project"
 authors = [
     "Ivo Woltring <ivo.woltring@ordina.nl>",
-    "Jan-Hein Bührman",
-    "Ravi Selker <ravi.selker@ordina.nl>",
-    "Roel Adriaans <roel.adriaans@ordina.nl>",
-    "Johan Vergeer <johan.vergeer@ordina.nl>",
-    "Sebastiaan Zeeff <sebastiaan.zeeff@ordina.nl>",
 ]
 license = "Apache 2.0"
 readme = "README.md"

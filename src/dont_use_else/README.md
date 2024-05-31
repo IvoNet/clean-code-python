@@ -8,7 +8,7 @@ Well an else in any form can actually negate OO principles like polymorphism and
 harder to read and understand.
 
 If you have a lot of type switches in the code it is a good idea to refactor it to use polymorphism instead.
-If you do not and a new type is introduces you might have to change a lot of switches where these are "checked" in the
+If you do not and a new type is introduced you might have to change a lot of switches where these are "checked" in the
 code. The trouble is finding them and this violates the open-closed principle.
 
 To make the code adhere to the Single Responsibility Principle, it is better to avoid using else.
