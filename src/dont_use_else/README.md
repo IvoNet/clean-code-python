@@ -48,8 +48,8 @@ In this case:
 
 # But, but, but... I like my else statements
 
-I get it. I like them too. But they are not always the best choice. In this case, it is better to avoid them.
-even if you only have something like a boolean flag to check for a condition, it might be better to think about e.g. the
+I get it. I like them too. But they are not always the best choice. In this case, it is better to avoid them. Even if
+you only have something like a boolean flag to check for a condition, it might be better to think about e.g. the
 strategy pattern.
 
 # Conclusion
