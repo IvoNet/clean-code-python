@@ -2,8 +2,26 @@ from abc import ABC, abstractmethod
 
 
 class Observer(ABC):
+    """The Observer interface declares the update method, used by subjects."""
+
     @abstractmethod
-    def update(self, store: "Store"):
+    def update(self, store: "Store") -> None:
+        pass
+
+
+class Subject(ABC):
+    """The Subject interface declares a set of methods for managing subscribers."""
+
+    @abstractmethod
+    def attach(self, observer: Observer) -> None:
+        pass
+
+    @abstractmethod
+    def detach(self, observer: Observer) -> None:
+        pass
+
+    @abstractmethod
+    def notify(self) -> None:
         pass
 
 
@@ -17,31 +35,31 @@ class Product:
         return self.name == other.name
 
 
-class Store:
+class Store(Subject):
     def __init__(self):
         self.observers: set[Observer] = set()
         self.stock: list[Product] = []
 
-    def add_observer(self, observer: Observer):
+    def attach(self, observer: Observer) -> None:
         self.observers.add(observer)
 
-    def remove_observer(self, observer: Observer):
+    def detach(self, observer: Observer) -> None:
         if observer in self.observers:
             self.observers.remove(observer)
 
-    def notify_observers(self):
+    def notify(self) -> None:
         for observer in self.observers.copy():
             observer.update(self)
 
-    def delivery(self, product: Product):
+    def delivery(self, product: Product) -> None:
         self.stock.append(product)
-        self.notify_observers()
+        self.notify()
 
-    def has_product(self, product: Product) -> [Product | None]:
+    def has_product(self, product: Product) -> bool:
         return product in self.stock
 
 
-class Customer(Observer):
+class Customer(Observer):  # ConcreteObserver
     def __init__(self, name: str, product: Product):
         self.name: str = name
         self.product_of_interest = product
@@ -58,15 +76,20 @@ class Customer(Observer):
             bool: True if the product is available in the store, False otherwise.
         """
         if not store.has_product(self.product_of_interest):
-            store.add_observer(self)
+            store.attach(self)
             return False
         self.happy = True
         return True
 
     def update(self, store: Store):
+        """Now we will only go shopping when we get a notification from the store.
+        It does not necessarily mean that the product I am looking for is available, only that the store has changed.
+        You might even want to specialize the observer pattern to only notify when the
+        product I am looking for is available. But that is an exercise for you and you may notify
+        me when you did that :-)."""
         print(f"{self.name} is going shopping!")
         if self.go_shopping(store):
-            store.remove_observer(self)
+            store.detach(self)
 
     @property
     def is_happy(self):
