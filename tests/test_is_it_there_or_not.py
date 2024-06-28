@@ -12,7 +12,7 @@ from is_it_there_or_not.is_it_there_or_not import Store, Customer, Product
 def setup():
     print("Setting up...")
     store = Store()
-    store.receive_product(Product("iPhone"))
+    store.delivery(Product("iPhone"))
     alice = Customer("Alice", Product("iPhone"))
     bob = Customer("Bob", Product("Samsung"))
     charlie = Customer("Charlie", Product("Coffee"))
@@ -95,7 +95,7 @@ class CustomersGoToStoreToAskForProduct:
             )
 
     def deliver_product(self, product_name):
-        self.store.receive_product(product_name)
+        self.store.delivery(product_name)
         time.sleep(0.2)
 
     def customers_satisfied(self):

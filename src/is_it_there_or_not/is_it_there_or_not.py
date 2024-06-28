@@ -12,7 +12,7 @@ class Store:
     def __init__(self):
         self.stock: list[Product] = []
 
-    def receive_product(self, product: Product):
+    def delivery(self, product: Product):
         self.stock.append(product)
 
     def has_product(self, product: Product):
