@@ -31,3 +31,6 @@ e.g. when the store receives a new product.
 - Test should be faster as no sleeps have bean build in anymore
 
 This is the observer pattern in action.
+
+Note that the removeObserver method is not strictly speaking part of the pattern, but that does not mean it is a bad
+idea :-).
