@@ -32,13 +32,13 @@ def setup():
 def test_1_customer_product_available(setup):
     store, customers = setup
     assert store.has_product(Product("iPhone")) is True
-    assert store.has_product(customers["alice"].product_of_interest) is True
+    assert customers["alice"].go_shopping(store) is True
 
 
 def test_1_customer_product_not_available(setup):
     store, customers = setup
     assert store.has_product(Product("Samsung")) is False
-    assert store.has_product(customers["bob"].product_of_interest) is False
+    assert customers["bob"].go_shopping(store) is False
 
 
 def test_customer_keep_checking(setup):
@@ -83,7 +83,7 @@ class CustomersGoToStoreToAskForProduct:
     def customer_thread(self, customer: Customer):
         while not self.threads[customer.name].stopped:
             time.sleep(0.1)
-            if self.store.has_product(customer.product_of_interest):
+            if customer.go_shopping(self.store):
                 self.found[customer.name] = True
                 print(
                     f"[FOUND] {customer.name} has found the {customer.product_of_interest}."
@@ -100,7 +100,7 @@ class CustomersGoToStoreToAskForProduct:
 
     def customers_satisfied(self):
         for customer in self.customers:
-            if self.store.has_product(customer.product_of_interest):
+            if customer.go_shopping(self.store):
                 self.found[customer.name] = True
         return all(self.found.values())
 

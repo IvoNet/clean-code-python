@@ -8,12 +8,6 @@ class Product:
         return self.name == other.name
 
 
-class Customer:
-    def __init__(self, name: str, product: Product):
-        self.name: str = name
-        self.product_of_interest = product
-
-
 class Store:
     def __init__(self):
         self.stock: list[Product] = []
@@ -23,3 +17,21 @@ class Store:
 
     def has_product(self, product: Product):
         return product in self.stock
+
+
+class Customer:
+    def __init__(self, name: str, product: Product):
+        self.name: str = name
+        self.product_of_interest = product
+
+    def go_shopping(self, store: Store) -> bool:
+        """
+        Checks if the customer can purchase their desired product.
+
+        Args:
+            store (Store): The store where the product is to be purchased.
+
+        Returns:
+            bool: True if the product is available in the store, False otherwise.
+        """
+        return store.has_product(self.product_of_interest)
