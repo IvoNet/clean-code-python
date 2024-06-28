@@ -68,4 +68,6 @@ def check_customer_product(setup, customer_name, product_name):
     assert customers[customer_name].is_happy is False
     store.delivery(Product(product_name))
     assert store.has_product(Product(product_name)) is True
+    # Notice that we do not actively go shopping again as the fist time we registered ourselves as an observer
+    # and the store will notify us when the product is available
     assert customers[customer_name].is_happy is True
