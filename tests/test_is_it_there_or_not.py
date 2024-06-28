@@ -96,7 +96,7 @@ class CustomersGoToStoreToAskForProduct:
 
     def deliver_product(self, product_name):
         self.store.receive_product(product_name)
-        time.sleep(0.3)
+        time.sleep(0.2)
 
     def customers_satisfied(self):
         for customer in self.customers:
