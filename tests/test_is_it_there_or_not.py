@@ -132,9 +132,6 @@ class CustomersGoToStoreToAskForProduct:
             thread.stop()
         print("All threads stopped.")
 
-    def __repr__(self):
-        return f"CustomersGoToStoreToAskForProduct({self.found})"
-
 
 class StoppableThread(threading.Thread):
     def __init__(self, *args, **kwargs):
