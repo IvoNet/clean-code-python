@@ -1,22 +1,38 @@
+class Product:
+    def __init__(self, name):
+        self.name = name
+
+
 class Customer:
-    def __init__(self, name, product):
+    def __init__(self, name, product: Product):
         self.name = name
         self.product_of_interest = product
 
 
 class Store:
-    def __init__(self, product):
-        self.customers = set()
-        self.products = [
+    def __init__(self, product: Product):
+        self.products: list[Product] = [
             product,
         ]
 
-    def receive_product(self, product_name):
-        self.products.append(product_name)
+    def receive_product(self, product: Product):
+        self.products.append(product)
 
-    def has_product(self, product_name):
-        return product_name in self.products
+    def has_product(self, product: Product):
+        return product in self.products
 
 
-class Product:
-    pass
+PRODUCTS = {
+    "coffee": Product("Coffee"),
+    "tea": Product("tea"),
+    "milk": Product("milk"),
+    "sugar": Product("sugar"),
+    "bread": Product("bread"),
+    "butter": Product("butter"),
+    "jam": Product("jam"),
+    "honey": Product("honey"),
+    "iphone": Product("iPhone"),
+    "samsung": Product("Samsung"),
+    "nokia": Product("Nokia"),
+    "sony": Product("Sony"),
+}
