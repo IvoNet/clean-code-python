@@ -1,38 +1,25 @@
 class Product:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, name: str):
+        self.name: str = name
+
+    def __eq__(self, other):
+        if not isinstance(other, Product):
+            return False
+        return self.name == other.name
 
 
 class Customer:
-    def __init__(self, name, product: Product):
-        self.name = name
+    def __init__(self, name: str, product: Product):
+        self.name: str = name
         self.product_of_interest = product
 
 
 class Store:
-    def __init__(self, product: Product):
-        self.products: list[Product] = [
-            product,
-        ]
+    def __init__(self):
+        self.stock: list[Product] = []
 
     def receive_product(self, product: Product):
-        self.products.append(product)
+        self.stock.append(product)
 
     def has_product(self, product: Product):
-        return product in self.products
-
-
-PRODUCTS = {
-    "coffee": Product("Coffee"),
-    "tea": Product("tea"),
-    "milk": Product("milk"),
-    "sugar": Product("sugar"),
-    "bread": Product("bread"),
-    "butter": Product("butter"),
-    "jam": Product("jam"),
-    "honey": Product("honey"),
-    "iphone": Product("iPhone"),
-    "samsung": Product("Samsung"),
-    "nokia": Product("Nokia"),
-    "sony": Product("Sony"),
-}
+        return product in self.stock

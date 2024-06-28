@@ -6,9 +6,9 @@ from abc import ABC, abstractmethod
 class AbstractFactory(ABC):
     """
     The Abstract Factory interface defines a set of methods to create various
-    abstract products. These products form a family that shares a common theme
-    or concept. Typically, products within a family can collaborate with each
-    other, and different families of products are incompatible.
+    abstract stock. These stock form a family that shares a common theme
+    or concept. Typically, stock within a family can collaborate with each
+    other, and different families of stock are incompatible.
     """
 
     @abstractmethod
@@ -22,10 +22,10 @@ class AbstractFactory(ABC):
 
 class ConcreteFactory1(AbstractFactory):
     """
-    Concrete Factories produce a family of products belonging to a specific
-    variant. The factory ensures that the resulting products are compatible.
-    Notably, the method signatures of Concrete Factory return abstract products,
-    while actual concrete products are instantiated inside the methods.
+    Concrete Factories produce a family of stock belonging to a specific
+    variant. The factory ensures that the resulting stock are compatible.
+    Notably, the method signatures of Concrete Factory return abstract stock,
+    while actual concrete stock are instantiated inside the methods.
     """
 
     def create_product_a(self) -> AbstractProductA:
@@ -58,7 +58,7 @@ class AbstractProductA(ABC):
         pass
 
 
-# Concrete Factories produce a family of concrete products that belong to a single variant.
+# Concrete Factories produce a family of concrete stock that belong to a single variant.
 
 
 class ConcreteProductA1(AbstractProductA):
@@ -73,8 +73,8 @@ class ConcreteProductA2(AbstractProductA):
 
 class AbstractProductB(ABC):
     """
-    This is the base interface for another product. All products can interact
-    with each other, but meaningful interaction occurs only between products of
+    This is the base interface for another product. All stock can interact
+    with each other, but meaningful interaction occurs only between stock of
     the same concrete variant.
     """
 
@@ -90,13 +90,13 @@ class AbstractProductB(ABC):
         """
         ...and it can collaborate with Product A.
 
-        The Abstract Factory ensures that all products it creates belong to the
+        The Abstract Factory ensures that all stock it creates belong to the
         same variant, ensuring compatibility.
         """
         pass
 
 
-# Concrete Factories produce concrete products, that belong to a single variant.
+# Concrete Factories produce concrete stock, that belong to a single variant.
 
 
 class ConcreteProductB1(AbstractProductB):
@@ -128,7 +128,7 @@ class ConcreteProductB2(AbstractProductB):
 
 def client(factory: AbstractFactory) -> None:
     """
-    The client code interacts with factories and products solely through
+    The client code interacts with factories and stock solely through
     abstract types: AbstractFactory and AbstractProduct. This enables the
     passing of any factory or product subclass to the client code without
     causing disruptions.

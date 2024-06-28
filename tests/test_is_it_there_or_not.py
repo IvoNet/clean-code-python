@@ -5,19 +5,20 @@ import time
 
 import pytest
 
-from is_it_there_or_not.is_it_there_or_not import Store, Customer, PRODUCTS
+from is_it_there_or_not.is_it_there_or_not import Store, Customer, Product
 
 
 @pytest.fixture(scope="function")
 def setup():
     print("Setting up...")
-    store = Store(PRODUCTS["iphone"])
-    alice = Customer("Alice", PRODUCTS["iphone"])
-    bob = Customer("Bob", PRODUCTS["samsung"])
-    charlie = Customer("Charlie", PRODUCTS["coffee"])
-    david = Customer("David", PRODUCTS["iphone"])
-    eve = Customer("Eve", PRODUCTS["sugar"])
-    frank = Customer("Frank", PRODUCTS["jam"])
+    store = Store()
+    store.receive_product(Product("iPhone"))
+    alice = Customer("Alice", Product("iPhone"))
+    bob = Customer("Bob", Product("Samsung"))
+    charlie = Customer("Charlie", Product("Coffee"))
+    david = Customer("David", Product("iPhone"))
+    eve = Customer("Eve", Product("sugar"))
+    frank = Customer("Frank", Product("jam"))
     return store, {
         "alice": alice,
         "bob": bob,
@@ -30,13 +31,13 @@ def setup():
 
 def test_1_customer_product_available(setup):
     store, customers = setup
-    assert store.has_product(PRODUCTS["iphone"]) is True
+    assert store.has_product(Product("iPhone")) is True
     assert store.has_product(customers["alice"].product_of_interest) is True
 
 
 def test_1_customer_product_not_available(setup):
     store, customers = setup
-    assert store.has_product(PRODUCTS["samsung"]) is False
+    assert store.has_product(Product("Samsung")) is False
     assert store.has_product(customers["bob"].product_of_interest) is False
 
 
@@ -52,19 +53,19 @@ def test_customer_keep_checking(setup):
         assert customers_go_to_store.customer_satisfied(customers["david"]) is True
 
         assert customers_go_to_store.customer_satisfied(customers["bob"]) is False
-        customers_go_to_store.deliver_product(PRODUCTS["samsung"])
+        customers_go_to_store.deliver_product(Product("Samsung"))
         assert customers_go_to_store.customer_satisfied(customers["bob"]) is True
 
         assert customers_go_to_store.customer_satisfied(customers["charlie"]) is False
-        customers_go_to_store.deliver_product(PRODUCTS["coffee"])
+        customers_go_to_store.deliver_product(Product("Coffee"))
         assert customers_go_to_store.customer_satisfied(customers["charlie"]) is True
 
         assert customers_go_to_store.customer_satisfied(customers["eve"]) is False
-        customers_go_to_store.deliver_product(PRODUCTS["sugar"])
+        customers_go_to_store.deliver_product(Product("sugar"))
         assert customers_go_to_store.customer_satisfied(customers["eve"]) is True
 
         assert customers_go_to_store.customer_satisfied(customers["frank"]) is False
-        customers_go_to_store.deliver_product(PRODUCTS["jam"])
+        customers_go_to_store.deliver_product(Product("jam"))
         assert customers_go_to_store.customer_satisfied(customers["frank"]) is True
 
         assert customers_go_to_store.customers_satisfied() is True
