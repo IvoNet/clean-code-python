@@ -3,13 +3,13 @@
 from dont_use_else.discount_service import DiscountService, DiscountType
 
 
-def test_persentage_discount():
+def test_percentage_discount():
     discount_service = DiscountService()
     discount = discount_service.apply_discount(100, DiscountType.PERCENTAGE, 0.1)
     assert discount == 90
 
 
-def test_wrong_persentage_discount():
+def test_wrong_percentage_discount():
     discount_service = DiscountService()
     try:
         discount_service.apply_discount(100, DiscountType.PERCENTAGE, 2)
